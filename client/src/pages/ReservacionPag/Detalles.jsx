@@ -43,7 +43,7 @@ const FormularioReservacion = () => {
 
 
   return (
-    <div className="p-8 bg-orange-800 text-center">
+    <div className="p-8 bg-emerald-500 text-center">
       <h2 className="text-2xl font-bold text-white text-center mb-6">Formulario de Reservación</h2>
 
       <form onSubmit={handleSubmit} className="space-y-6">

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 
-const Header = () => {
+const Header2 = () => {
     const navigate = useNavigate();
     const [activeMenu, setActiveMenu] = useState(null);
     const [activeUserMenu, setActiveUserMenu] = useState(false);
@@ -114,4 +114,4 @@ const Header = () => {
     );
 };
 
-export default Header;
+export default Header2;

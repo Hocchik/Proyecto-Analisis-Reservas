@@ -16,7 +16,7 @@ const NumeroPersona = () => {
     };
 
     return (
-        <div className="flex flex-col items-center gap-6  p-6 bg-orange-800 ">
+        <div className="flex flex-col items-center gap-6  p-6 bg-emerald-500 ">
             <h2 className="text-xl font-bold text-white mb-4">Selecciona el número de personas</h2>
 
             <div className="flex justify-center items-center gap-4">

@@ -5,8 +5,8 @@ const ContactUs = () => {
     "https://www.google.com/maps/embed?pb=!4v1699925929000!6m8!1m7!1sQJq1FQt541S4RuiHIleYpQ!2m2!1d-4.587241!2d-81.265733!3f291.14!4f0!5f0.7820865974627469";
 
   return (
-    <div className="bg-orange-900 min-h-screen flex items-center justify-center px-4 py-8 md:px-16 mt-16">
-      <div className="bg-amber-700 rounded-lg shadow-lg p-8 w-full md:w-3/4 lg:w-2/3 flex flex-col gap-8">
+    <div className="bg-sky-400 min-h-screen flex items-center justify-center px-4 py-8 md:px-16 mt-16">
+      <div className="bg-blue-500 rounded-lg shadow-lg p-8 w-full md:w-3/4 lg:w-2/3 flex flex-col gap-8">
         <h1 className="text-3xl font-bold text-center text-white mb-6">
           Contáctanos
         </h1>

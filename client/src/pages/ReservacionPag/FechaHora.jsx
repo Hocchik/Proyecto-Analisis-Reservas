@@ -76,7 +76,7 @@ const CalendarioReservas = () => {
   };
 
   return (
-    <div className=" p-8 bg-orange-800">
+    <div className=" p-8 bg-emerald-500">
       <h1 className="text-white text-center text-2xl font-bold mb-8">Selecciona una fecha</h1>
       <div className="flex flex-col items-center">
         <div className="flex items-center justify-between mb-8 w-full max-w-lg">

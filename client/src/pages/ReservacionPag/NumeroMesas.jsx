@@ -30,7 +30,7 @@ const NumeroMesas = () => {
 
   return (
     <>
-      <div className="bg-orange-800">
+      <div className="bg-emerald-500">
         <h2 className="text-white text-2xl font-bold mb-4 text-center">Selecciona una Mesa</h2>
 
         <div className="grid grid-cols-6 gap-4 justify-center mb-4">

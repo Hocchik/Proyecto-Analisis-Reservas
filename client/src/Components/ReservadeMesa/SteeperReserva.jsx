@@ -13,8 +13,7 @@ const SteeperReserva = ({ paso }) => {
   ];
 
   return (
-    <div className="w-full bg-orange-800 px-24 py-4 mt-16">
-      {/* Título principal */}
+    <div className="w-full bg-emerald-500 px-24 py-4 mt-16">
       <h2 className="text-3xl font-bold text-center text-white mb-8">Pasos a seguir</h2>
 
       <div className="relative flex items-center justify-between w-full mb-24 mt-10">
