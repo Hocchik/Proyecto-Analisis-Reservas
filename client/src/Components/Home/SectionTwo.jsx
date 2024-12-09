@@ -7,7 +7,7 @@ const SectionOne = () => {
         navigate("/home/carta/ceviches");
     };
     return (
-        <div className="py-10 bg-amber-700 ">
+        <div className="py-10 bg-teal-500 ">
             <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
                 <div className="flex flex-col items-center">
                     <img

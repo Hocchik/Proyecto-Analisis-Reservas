@@ -6,7 +6,7 @@ const SectionTwo = () => {
         navigate("/home/reservaMesa");
     };
     return (
-        <div className="py-10 bg-orange-900">
+        <div className="py-10 bg-cyan-500">
             <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
                 <div className="mt-8 md:mt-0 md:mr-6 text-white">
                     <h1 className="text-4xl md:text-5xl font-bold mb-4">¡Explora los sabores del mar!</h1>

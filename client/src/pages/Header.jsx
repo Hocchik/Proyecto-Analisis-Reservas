@@ -15,20 +15,20 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 w-full bg-white shadow-lg flex items-center justify-between px-8 py-4 z-50">
-      <h1 className="text-2xl font-bold text-black">
-        <Link to="/home" className="hover:text-amber-700 transition duration-200">D'Peñas</Link>
+    <header className="fixed top-0 left-0 w-full bg-black shadow-lg flex items-center justify-between px-8 py-4 z-50">
+      <h1 className="text-2xl font-bold text-white">
+        <Link to="/home" className="hover:text-cyan-400 transition duration-200">D'Peñas</Link>
       </h1>
 
-      <nav className="nav font-bold text-lg text-black flex-1">
+      <nav className="nav font-bold text-lg text-white flex-1">
         <ul className="flex items-center justify-center space-x-8">
           <li className="relative group">
-            <Link to="/home" className="hover:text-amber-700 transition duration-200" onClick={closeMenu}>Home</Link>
+            <Link to="/home" className="hover:text-cyan-400 transition duration-200" onClick={closeMenu}>Home</Link>
           </li>
 
           <li className="relative group">
             <button
-              className="hover:text-amber-700 transition duration-200 flex items-center space-x-2"
+              className="hover:text-cyan-400 transition duration-200 flex items-center space-x-2"
               onClick={() => toggleMenu('carta')}
               aria-haspopup="true"
               aria-expanded={activeMenu === 'carta' ? 'true' : 'false'}
@@ -57,16 +57,17 @@ const Header = () => {
           </li>
 
           <li className="relative group">
-            <Link to="/home/reservaMesa" className="hover:text-amber-700 transition duration-200" onClick={closeMenu}>Reservar Mesa</Link>
+            <Link to="/home/reservaMesa" className="hover:text-cyan-400 transition duration-200" onClick={closeMenu}>Reservar Mesa</Link>
           </li>
 
           <li className="relative group">
-            <Link to="/home/contactanos" className="hover:text-amber-700 transition duration-200" onClick={closeMenu}>Contáctanos</Link>
+            <Link to="/home/contactanos" className="hover:text-cyan-400 transition duration-200" onClick={closeMenu}>Contáctanos</Link>
+
           </li>
         </ul>
       </nav>
       <div className="hidden md:flex items-center space-x-2">
-        <Link to="/login" className="text-white hover:bg-black bg-black focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-base px-3 lg:px-4 py-2 lg:py-2.5 flex items-center">
+        <Link to="/login" className="text-white hover:bg-cyan-400 bg-black focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-base px-3 lg:px-4 py-2 lg:py-2.5 flex items-center">
           <FontAwesomeIcon icon={faUser} />
         </Link>
       </div>
