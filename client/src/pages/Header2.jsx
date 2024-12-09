@@ -83,7 +83,7 @@ const Header = () => {
                     id="avatarButton"
                     type="button"
                     className="w-10 h-10 rounded-full cursor-pointer"
-                    src="/docs/images/people/profile-picture-5.jpg"
+                    src="https://thumbs.dreamstime.com/b/l%C3%ADnea-icono-del-negro-avatar-perfil-de-usuario-121102131.jpg"
                     alt="User avatar"
                     onClick={toggleUserMenu}
                 />
