@@ -12,24 +12,15 @@ const SteeperReserva = ({ paso }) => {
     { nombre: "Finalizado", descripcion: "¡Reserva completada con éxito!" },
   ];
 
-  const handleSiguiente = () => {
-    if (pasoActual < pasos.length) {
-      setPasoActual(pasoActual + 1);
-    }
-  };
-
-  const handleAnterior = () => {
-    if (pasoActual > 1) {
-      setPasoActual(pasoActual - 1);
-    }
-  };
-
   return (
     <div className="w-full bg-orange-800 px-24 py-4 mt-16">
-      <div className="relative flex items-center justify-between w-full">
+      {/* Título principal */}
+      <h2 className="text-3xl font-bold text-center text-white mb-8">Pasos a seguir</h2>
+
+      <div className="relative flex items-center justify-between w-full mb-24 mt-10">
         <div className="absolute left-0 top-2/4 h-0.5 w-full -translate-y-2/4 bg-white"></div>
         <div
-          className={`absolute left-0 top-2/4 h-0.5 w-full -translate-y-2/4 ${pasoActual === pasos.length ? "bg-black" : "bg-gray-900"
+          className={`absolute left-0 top-2/4 h-0.5 w-full -translate-y-2/4 ${pasoActual === pasos.length ? "bg-black" : "bg-black"
             } transition-all duration-500`}
         ></div>
 
@@ -38,7 +29,7 @@ const SteeperReserva = ({ paso }) => {
           return (
             <div
               key={pasoNumero}
-              className={`relative z-10 grid w-10 h-10 font-bold text-white transition-all duration-300 ${pasoNumero <= pasoActual ? "bg-black" : "bg-gray-300"
+              className={`relative z-10 grid w-10 h-10 font-bold text-white transition-all duration-300 ${pasoNumero <= pasoActual ? "bg-black" : "bg-black"
                 } rounded-full place-items-center`}
             >
               <svg
@@ -70,25 +61,6 @@ const SteeperReserva = ({ paso }) => {
         })}
       </div>
       <Outlet />
-
-      <div className="flex justify-between mt-32">
-        <button
-          onClick={handleAnterior}
-          className="select-none rounded-lg bg-gray-900 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-          type="button"
-          disabled={pasoActual === 1}
-        >
-          Anterior
-        </button>
-        <button
-          onClick={handleSiguiente}
-          className="select-none rounded-lg bg-gray-900 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-          type="button"
-          disabled={pasoActual === pasos.length}
-        >
-          Siguiente
-        </button>
-      </div>
     </div>
   );
 };

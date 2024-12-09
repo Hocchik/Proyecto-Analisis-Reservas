@@ -53,7 +53,7 @@ const Header = () => {
                         {activeMenu === 'carta' && (
                             <ul className="absolute top-12 left-1/2 transform -translate-x-1/2 bg-white text-black rounded-lg shadow-lg py-2 w-48 space-y-2 transition duration-300">
                                 <li className="hover:bg-gray-100 px-4 py-2 rounded-md">
-                                    <Link to="/home/carta/ceviches" onClick={closeMenu}>Ceviches</Link>
+                                    <Link to="/home/carta/ceviches" onClick={closeMenu}>Platos Marinos</Link>
                                 </li>
                                 <li className="hover:bg-gray-100 px-4 py-2 rounded-md">
                                     <Link to="/home/carta/piqueos" onClick={closeMenu}>Piqueos Típicos</Link>
