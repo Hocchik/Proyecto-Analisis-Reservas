@@ -7,14 +7,14 @@ const router = Router();
 //Reservas
 router.get('/reservaciones', getReservaciones)
 router.get('/reservaciones/:id', getReservacion)
-router.post('/reservaciones', createReservacion )
+router.post('/reservas/createreserva', createReservacion)
 router.put('/reservaciones/:id', putReservacion)
 router.delete('/reservaciones/:id', deleteReservacion)
 
 //DetallesReservas
 router.get('/detallereserva', getReservasDetalles)
 router.get('/detallereserva/:id', getReservaDetalle)
-router.post('/detallereserva', createReservaDetalle )
+router.post('/reservas/createdetallereserva', createReservaDetalle)
 router.put('/detallereserva/:id', updateReservaDetalle)
 router.delete('/detallereserva/:id', deleteReservaDetalle)
 

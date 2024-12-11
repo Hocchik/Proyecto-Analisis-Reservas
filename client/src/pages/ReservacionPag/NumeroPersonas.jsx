@@ -1,19 +1,29 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setClienteID, setNumeroPersonas } from '../../Redux/Compra/ReservaSlice.jsx';
+import { useAuth } from '../../context/auth.context.jsx';
+
 
 const NumeroPersona = () => {
     const numeros = [1, 2, 3, 4, 5, 6];
     const [seleccionado, setSeleccionado] = useState(null);
     const [error, setError] = useState(false);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const {user} = useAuth()
+    console.log(user)
 
     const handleSiguiente = () => {
         if (seleccionado !== null) {
-            navigate('/home/reservaMesa/fechaHora', { state: { numeroPersonas: seleccionado } });
+        dispatch(setNumeroPersonas(seleccionado));
+        dispatch(setClienteID(user.ClienteID))
+        navigate('/home/reservaMesa/fechaHora');
         } else {
-            setError(true);
+        setError(true);
         }
     };
+
 
     return (
         <div className="flex flex-col items-center gap-6  p-6 bg-emerald-500 ">

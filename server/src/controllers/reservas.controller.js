@@ -25,10 +25,10 @@ export const createReservacion = async (req, res) =>{
 
     const result = await pool.request()
     .input('ClienteID', sql.Int, req.body.ClienteID)
-    .input('MesaID', sql.DateTime, req.body.MesaID)
-    .input('FechaPedido', sql.Int, req.body.FechaPedido)
-    .input('HorarioID', sql.VarChar, req.body.HorarioID)
-    .input('Estado', sql.VarChar, req.body.Estado)
+    .input('MesaID', sql.NVarChar, req.body.MesaID)
+    .input('FechaPedido', sql.NVarChar, req.body.FechaPedido)
+    .input('HorarioID', sql.Int, req.body.HorarioID)
+    .input('Estado', sql.NVarChar, req.body.Estado)
     .query('Insert into Reserva (ClienteID, MesaID, FechaPedido, HorarioID, Estado) values (@ClienteID, @MesaID, @FechaPedido, @HorarioID, @Estado); Select SCOPE_IDENTITY() as ReservacionID')
     
     console.log(result)

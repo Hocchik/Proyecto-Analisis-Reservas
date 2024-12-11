@@ -1,8 +1,10 @@
-import { configureStore } from "@reduxjs/toolkit";
-import reservaReducer from "./Compra/ReservaSlice";
+import { configureStore } from '@reduxjs/toolkit';
+import reservaReducer from './Compra/ReservaSlice.jsx';
 
-export default configureStore({
-    reducer: {
-        compra: reservaReducer
-    }
-})
+const store = configureStore({
+  reducer: {
+    reserva: reservaReducer,
+  },
+});
+
+export default store;

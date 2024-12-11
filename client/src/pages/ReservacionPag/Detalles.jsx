@@ -1,15 +1,19 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
+import { setRequerimiento, setRestriccion } from '../../Redux/Compra/ReservaSlice.jsx'
+import { useClient } from "../../context/Client.context.jsx";
 
 const FormularioReservacion = () => {
-  const [requerimiento, setRequerimiento] = useState("");
-  const [restriccion, setRestriccion] = useState("");
+  const [requerimiento, setRequerimientoo] = useState("");
+  const [restriccion, setRestriccionn] = useState("");
   const [errores, setErrores] = useState({});
   const [modalVisible, setModalVisible] = useState(false);
   const navigate = useNavigate();
-
-
-
+  const dispatch = useDispatch();
+  const {createReservas, createDetalleReservas} = useClient();
+  const reserva = useSelector(state => state.reserva); 
+  let Data;
   const handleAnterior = () => {
     navigate('/home/reservaMesa/numeroMesas');
   };
@@ -17,7 +21,6 @@ const FormularioReservacion = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     let camposConErrores = {};
-
     if (!requerimiento || requerimiento === "invalido") {
       camposConErrores.requerimiento = "Por favor selecciona un requerimiento válido.";
     }
@@ -31,7 +34,19 @@ const FormularioReservacion = () => {
       setErrores(camposConErrores);
     } else {
       setErrores({});
-      console.log("Formulario enviado:", { requerimiento, restriccion });
+      dispatch(setRequerimiento(requerimiento));
+      dispatch(setRestriccion(restriccion));
+      Data = { ...reserva, requerimiento, restriccion }      
+      const Reserva = {
+        ClienteID: Data.clienteID,
+        MesaID: Data.numeroMesas,
+        FechaPedido: Data.fecha,
+        HorarioID: Data.horario,
+        Estado: Data.estado
+      }
+      console.log(Reserva)
+      createReservas(Reserva)
+      
       setModalVisible(true);
       setTimeout(() => {
         setModalVisible(false);
@@ -54,7 +69,7 @@ const FormularioReservacion = () => {
           <select
             id="requerimiento"
             value={requerimiento}
-            onChange={(e) => setRequerimiento(e.target.value)}
+            onChange={(e) => setRequerimientoo(e.target.value)}
             className={`w-[500px] p-3 border ${errores.requerimiento ? "border-red-500" : "border-gray-300"
               } rounded-lg shadow-sm focus:outline-none focus:ring-2 ${errores.requerimiento ? "focus:ring-red-500" : "focus:ring-orange-500"
               }`}
@@ -77,7 +92,7 @@ const FormularioReservacion = () => {
           <textarea
             id="restriccion"
             value={restriccion}
-            onChange={(e) => setRestriccion(e.target.value)}
+            onChange={(e) => setRestriccionn(e.target.value)}
             placeholder="Escribe aquí si hay alguna restricción..."
             className={`w-[500px] p-3 border ${errores.restriccion ? "border-red-500" : "border-gray-300"
               } rounded-lg shadow-sm focus:outline-none focus:ring-2 ${errores.restriccion ? "focus:ring-red-500" : "focus:ring-orange-500"

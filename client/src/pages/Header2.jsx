@@ -2,11 +2,13 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { useAuth } from '../context/auth.context';
 
 const Header2 = () => {
     const navigate = useNavigate();
     const [activeMenu, setActiveMenu] = useState(null);
     const [activeUserMenu, setActiveUserMenu] = useState(false);
+    const {user, logout} = useAuth();
 
     const toggleMenu = (menu) => {
         setActiveMenu(activeMenu === menu ? null : menu);
@@ -22,8 +24,8 @@ const Header2 = () => {
     };
 
     const handleSignOut = () => {
-
-        navigate('/home');
+        logout();
+        navigate('/');
     };
 
     return (
@@ -91,8 +93,7 @@ const Header2 = () => {
                 {activeUserMenu && (
                     <div className="absolute top-12 right-0 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 py-2 z-10">
                         <div className="px-4 py-3 text-sm text-gray-900">
-                            <div>Nombre del usuario</div>
-                            <div className="font-medium truncate">Correo del usuario</div>
+                            <div className="font-medium truncate">{user.Correo}</div>
                         </div>
                         <ul className="py-2 text-sm text-gray-700">
                             <li>

@@ -1,5 +1,7 @@
 import { getConnection } from "../database/connection.js";
 import {createAccessToken} from "../libs/jwt.js";
+import jwt from "jsonwebtoken";
+import { TOKEN_SECRET } from "../config.js";
 import sql from 'mssql'
 
 export const register = async (req, res) =>{
@@ -14,8 +16,8 @@ export const register = async (req, res) =>{
         .input('Contrasena', sql.NVarChar, Contrasena)
         .query('Select * from Clientes where Correo = @Correo and Contrasena = @Contrasena')
 
-        if(UserFound){
-            return res.status(200).json({message: 'Client already exists'})
+        if(UserFound.Correo===undefined){
+            return res.status(200).json({message: 'Client already exist'})
         }
 
         const result = await pool.request()
@@ -33,7 +35,7 @@ export const register = async (req, res) =>{
         res.cookie("token", token);
 
         res.json({
-            ClienteID: result.recordset[0].ClienteID,
+            ClienteID: result.ClienteID,
             Nombre: Nombre,
             Apellido: Apellido,
             Correo: Correo,
@@ -41,13 +43,15 @@ export const register = async (req, res) =>{
         })
 
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        console.log(error)
     }
 
 }
 
 export const login = async (req, res) =>{
     const { Correo, Contrasena } = req.body;
+    console.log(Correo)
+    console.log(Contrasena)
 
     const pool = await getConnection();
 
@@ -65,11 +69,9 @@ export const login = async (req, res) =>{
         
         res.json({
             ClienteID: UserFound.recordset[0].ClienteID,
-            Nombre: UserFound.recordset[0].Nombre,
-            Apellido: UserFound.recordset[0].Apellido,
-            Correo: UserFound.recordset[0].Correo,
-            Telefono: UserFound.recordset[0].Telefono
+            Correo: UserFound.recordset[0].Nombre
         })
+        console.log(res.data)
 
     } catch (error) {
         res.status(500).json({ message: error.message });

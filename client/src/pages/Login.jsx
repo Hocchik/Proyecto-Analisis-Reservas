@@ -1,19 +1,21 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/auth.context.jsx';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const {signin, DataClient} = useAuth();
     const navigate = useNavigate();
 
     const handleLogin = (e) => {
         e.preventDefault();
-        console.log('Email:', email);
-        console.log('Password:', password);
-
-
-        localStorage.setItem('userLoggedIn', 'true');
-
+        const Login = {
+            Correo: email, 
+            Contrasena: password
+        }
+        signin(Login);
+        DataClient(Login);
         navigate('/');
     };
 

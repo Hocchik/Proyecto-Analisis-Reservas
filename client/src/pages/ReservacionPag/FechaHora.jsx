@@ -1,11 +1,40 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { setFecha, setHorario } from '../../Redux/Compra/ReservaSlice.jsx';
+
+function convertirFecha(fechaStr) {
+  const meses = {
+    "Enero": "01",
+    "Febrero": "02",
+    "Marzo": "03",
+    "Abril": "04",
+    "Mayo": "05",
+    "Junio": "06",
+    "Julio": "07",
+    "Agosto": "08",
+    "Septiembre": "09",
+    "Octubre": "10",
+    "Noviembre": "11",
+    "Diciembre": "12"
+  };
+
+  const partes = fechaStr.split(" ");
+  const mes = meses[partes[0]]; // Obtener el número del mes
+  const año = partes[1]; // Obtener el año
+  const dia = partes[2]; // Obtener el día
+
+  // Formatear la fecha en el formato YYYY-MM-DD
+  return `${año}-${mes}-${dia.padStart(2, '0')}`;
+}
 
 const CalendarioReservas = () => {
   const [fechaSeleccionada, setFechaSeleccionada] = useState(null);
   const [mesActual, setMesActual] = useState(0);
   const [horarioSeleccionado, setHorarioSeleccionado] = useState(null);
   const [error, setError] = useState("");
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const meses = [
     {
@@ -25,10 +54,8 @@ const CalendarioReservas = () => {
       dias: [null, null, null, null, null, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28],
     },
   ];
-
+  
   const horarios = ["12:00 pm", "12:30 pm", "1:00 pm", "1:30 pm", "2:00 pm"];
-
-  const navigate = useNavigate();
 
   const handleSiguiente = () => {
     if (!fechaSeleccionada) {
@@ -39,7 +66,12 @@ const CalendarioReservas = () => {
       setError("Por favor, selecciona un horario.");
       return;
     }
+
+    const NewFecha = convertirFecha(fechaSeleccionada)
+
     setError("");
+    dispatch(setFecha(NewFecha));
+    dispatch(setHorario(horarioSeleccionado));
     navigate("/home/reservaMesa/numeroMesas");
   };
 
@@ -102,11 +134,11 @@ const CalendarioReservas = () => {
         <div className="mt-8">
           <h2 className="text-white text-2xl font-bold mb-4">Selecciona un horario</h2>
           <div className="flex flex-wrap gap-4">
-            {horarios.map((hora) => (
+            {horarios.map((hora, index) => (
               <button
                 key={hora}
-                onClick={() => setHorarioSeleccionado(hora)}
-                className={`px-4 py-2 rounded-full border-2 ${horarioSeleccionado === hora ? "bg-black text-white" : "border-black text-white"
+                onClick={() => setHorarioSeleccionado(index+1)}
+                className={`px-4 py-2 rounded-full border-2 ${horarioSeleccionado === index+1 ? "bg-black text-white" : "border-black text-white"
                   } hover:bg-black hover:text-white`}
               >
                 {hora}

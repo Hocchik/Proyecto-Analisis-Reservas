@@ -1,22 +1,25 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setNumeroMesas } from '../../Redux/Compra/ReservaSlice.jsx';
 
 const NumeroMesas = () => {
   const [selectedMesa, setSelectedMesa] = useState(null);
   const [error, setError] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleMesaClick = (mesa) => {
-    setSelectedMesa(mesa);
+    const mesaString = `M${mesa.toString().padStart(3, '0')}`;
+    setSelectedMesa(mesaString);
     setError(false);
   };
 
   const handleSiguiente = () => {
-    if (!selectedMesa) {
-      setError(true);
-      return;
+    if (selectedMesa) {
+      dispatch(setNumeroMesas(selectedMesa));
+      navigate('/home/reservaMesa/detalles');
     }
-    navigate('/home/reservaMesa/detalles');
   };
 
   const handleAnterior = () => {

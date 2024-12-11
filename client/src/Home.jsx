@@ -8,21 +8,42 @@ import Carta from './Carta';
 import AboutUs from './pages/AboutUs';
 import ReservaMesa from './ReservaMesa';
 import MiReserva from './pages/ReservacionPag/MiReserva';
+import { useAuth } from './context/auth.context';
+import { useDispatch } from 'react-redux';
+import { setClienteID } from './Redux/Compra/ReservaSlice';
 
 const Home = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const {user, userData } = useAuth()
+    const dispatch = useDispatch();
+
+    console.log(userData)
 
     useEffect(() => {
-        const userLoggedIn = localStorage.getItem('userLoggedIn') === 'true';
+        const userLoggedIn = user=== undefined || user===null ? true : false ;
         setIsLoggedIn(userLoggedIn);
     }, []);
 
+    try {
+        if(isLoggedIn){
+        dispatch(setClienteID(userData.ClientID))
+    }else{
+        dispatch(setClienteID(null))
+    }
+    } catch (error) {
+        console.log(error)
+    }
+    
+
     return (
         <>
-            {isLoggedIn ? <Header2 /> : <Header2 />}
+        
+            {isLoggedIn ? <Header /> : <Header2 />}
 
             <Routes>
+                
                 <Route path="/reservaMesa/*" element={<ReservaMesa />} />
+                
                 <Route path="/contactanos" element={<ContactUs />} />
                 <Route path="/carta/*" element={<Carta />} />
                 <Route path="/miReserva" element={<MiReserva />} />
@@ -30,6 +51,7 @@ const Home = () => {
             </Routes>
 
             <Footer />
+           
         </>
     );
 };

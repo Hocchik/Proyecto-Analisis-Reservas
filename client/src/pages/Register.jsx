@@ -1,14 +1,17 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/auth.context';
 
 const Register = () => {
     const [name, setName] = useState('');
     const [lastName, setLastName] = useState('');
+    const [telefono, setTelefono] = useState('')
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [showModal, setShowModal] = useState(false);
     const navigate = useNavigate();
+    const {signup} = useAuth();
 
     const handleRegister = (e) => {
         e.preventDefault();
@@ -18,6 +21,14 @@ const Register = () => {
             return;
         }
 
+        const register = {
+            Nombre: name, 
+            Apellido: lastName, 
+            Correo: email, 
+            Telefono: telefono, 
+            Contrasena: password
+        }
+        signup(register)
         setShowModal(true);
         setTimeout(() => {
             setShowModal(false);
@@ -54,6 +65,17 @@ const Register = () => {
                         />
                     </div>
 
+                    <div>
+                        <label htmlFor="telefono" className="block text-gray-300">Teléfono</label>
+                        <input
+                            id="telefono"
+                            type="text"
+                            value={telefono}
+                            onChange={(e) => setTelefono(e.target.value)}
+                            required
+                            className="w-full px-3 py-2 mt-1 text-black border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                        />
+                    </div>
                     <div>
                         <label htmlFor="email" className="block text-gray-300">Correo Electrónico</label>
                         <input
